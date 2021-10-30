@@ -480,10 +480,10 @@
         
         $('#clock').countdown('2022/06/10', function(event) {
             var $this = $(this).html(event.strftime(''
-            + '<div class="box"><div>%D</div> <span>Days</span> </div>'
-            + '<div class="box"><div>%H</div> <span>Hours</span> </div>'
-            + '<div class="box"><div>%M</div> <span>Mins</span> </div>'
-            + '<div class="box"><div>%S</div> <span>Secs</span> </div>'));
+            + '<div class="box"><div>%D</div> <span>Dias</span> </div>'
+            + '<div class="box"><div>%H</div> <span>Horas</span> </div>'
+            + '<div class="box"><div>%M</div> <span>Minutos</span> </div>'
+            + '<div class="box"><div>%S</div> <span>Segundos</span> </div>'));
         });
     }
 
@@ -547,42 +547,28 @@
                     required: true
                 },
 
-                events: {
+                notes: {
                     required: true
                 }
 
             },
 
             messages: {
-                name: "Please enter your name",
-                email: "Please enter your email",
-                guest: "Select your number of guest",
-                events: "Select your event list"
+                name: "Por favor introduce tu nombre",
+                email: "Por favor introduce tu correo electronico",
+                guest: "Por favor selecciona el número de invitados",
+                notes: "Por favor incluye el nombre de los asistentes"
             },
 
             submitHandler: function (form) {
                 $("#loader").css("display", "inline-block");
-                $.ajax({
-                    type: "POST",
-                    url: "mail.php",
-                    data: $(form).serialize(),
-                    success: function () {
-                        $( "#loader").hide();
-                        $( "#success").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#success").slideUp( "slow" );
-                        }, 3000);
-                        form.reset();
-                    },
-                    error: function() {
-                        $( "#loader").hide();
-                        $( "#error").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#error").slideUp( "slow" );
-                        }, 3000);
-                    }
-                });
-                return false; // required to block normal submit since you used ajax
+                $( "#loader").hide();
+                $( "#success").slideDown( "slow" );
+                setTimeout(function() {
+                    $( "#success").slideUp( "slow" );
+                    form.reset();
+                }, 3000);
+                return true;
             }
 
         });
