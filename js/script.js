@@ -170,10 +170,17 @@
                 var $this = $(this);
                 var img = $this.find(".slider-bg").attr("src");
 
+                const mq = window.matchMedia( "(max-width: 991px)" );
+                let bgPosition = "center center"
+
+                if(mq.matches) {
+                    bgPosition = ""
+                }
+
                 $this.css({
                     backgroundImage: "url("+ img +")",
                     backgroundSize: "cover",
-                    backgroundPosition: "center center"
+                    backgroundPosition: bgPosition
                 })
             });
         }
